@@ -1,4 +1,4 @@
-package main.java.nl.sogyo.pandemic.domain;
+package nl.sogyo.pandemic.domain;
 
 import java.sql.*;  
 import java.sql.Connection;

@@ -6,56 +6,50 @@ package nl.sogyo.pandemic.api;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import nl.sogyo.pandemic.domain.Game;
-import nl.sogyo.pandemic.domain.MainChar;
-import nl.sogyo.pandemic.domain.TextArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 
+import java.util.List;
+import nl.sogyo.pandemic.domain.Game;
+import nl.sogyo.pandemic.domain.MainChar;
+import nl.sogyo.pandemic.domain.TextArray;
+
 
 /**
- * @author rvvugt
+ * @author piekeheijmans
  *
  */
-@Path("setPlayer")
-public class PandemicInitialize {
+
+@Path("/getPaper")
+public class PandemicGame {
 
 	/**
 	 * @param request
 	 * @return
 	 */
-	@POST
+	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response initialize(
-			@Context HttpServletRequest request, 
-			PlayerData player) {
+			@Context HttpServletRequest request) {
 		
 		HttpSession session= request.getSession(true);
-		Game pandemic = new Game();
-		
-		String namePlayer = player.name;
-		int agePlayer =  player.age;
-		
-		pandemic.setPlayerInfo(namePlayer, agePlayer);
-		
-		session.setAttribute("pandemic", pandemic);	
-
+		Game pandemic = (Game) session.getAttribute("pandemic");
 		TextArray textArray = pandemic.startCycle();
- 		
- 		JSONObject json;
+		System.out.println("Fetch call received");
+	
+	 	JSONObject json;
 
  		json = new JSONObject();
 
-  		json.put("name", namePlayer);
-  		json.put("age", agePlayer);
+  		json.put("name", pandemic.getMainChar().getName());
+  		json.put("age", pandemic.getMainChar().getAgegroup());
   		json.put("id", textArray.getId());
   		json.put("day", textArray.getDay());
   		json.put("paperTitle", textArray.getPaperTitle());

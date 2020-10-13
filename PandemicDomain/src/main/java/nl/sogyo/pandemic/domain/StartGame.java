@@ -1,7 +1,7 @@
-package main.java.nl.sogyo.pandemic.domain;
+package nl.sogyo.pandemic.domain;
 
-import main.java.nl.sogyo.pandemic.domain.Game;
-import main.java.nl.sogyo.pandemic.domain.MainChar;
+import nl.sogyo.pandemic.domain.Game;
+import nl.sogyo.pandemic.domain.MainChar;
 
 public class StartGame {
 	

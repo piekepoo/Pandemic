@@ -1,4 +1,4 @@
-package main.java.nl.sogyo.pandemic.domain;
+package nl.sogyo.pandemic.domain;
 
 public class MainChar {
 	
@@ -32,8 +32,11 @@ public class MainChar {
 		int money = 0;
 	}
 	
-	private String getName() {
+	public String getName() {
 		return name;	
+	}
+	public int getAgegroup() {
+		return agegroup;	
 	}
 	
 

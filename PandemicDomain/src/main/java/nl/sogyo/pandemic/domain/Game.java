@@ -1,8 +1,9 @@
-package main.java.nl.sogyo.pandemic.domain;
+package nl.sogyo.pandemic.domain;
 
 import java.util.List;
 
-import main.java.nl.sogyo.pandemic.domain.MainChar;
+import nl.sogyo.pandemic.domain.MainChar;
+import nl.sogyo.pandemic.domain.TextArray;
 
 public class Game {
 	MainChar maincharacter;
@@ -10,6 +11,8 @@ public class Game {
 	int lockdownLevel;
 	int cycle;
 	SQLDatabaseConnection DatabaseConnection;
+	List<String> dataBaseList;
+	TextArray textArray;
 	
 		public Game() {
 			gameState = 0;
@@ -22,14 +25,24 @@ public class Game {
 		  System.out.println(this.startCycle());
 	 }
 	
-	 private void setPlayerInfo(String name, int age) {
+	 public void setPlayerInfo(String name, int age) {
 		 this.maincharacter = new MainChar(name, age);
 	 }
+	 
+	 public MainChar getMainChar() {
+		  return this.maincharacter;
+	 }
 		
-	private List<String> startCycle() {
+	 public TextArray getTextArray() {
+		 return textArray;	 
+	 }
+	 
+	 public TextArray startCycle() {
 		cycle += 1;
 		List<String> dataBaseList = DatabaseConnection.getData("select * from eventFlow where id = " + cycle + ";");
-	    return dataBaseList;
+	//	System.out.println(dataBaseList.get(0));
+		this.textArray = new TextArray(dataBaseList);
+	    return textArray;
 	}
 
 	
