@@ -51,6 +51,7 @@ height: 75px;
 /* line-height: 80px; */
 text-align: center;
 background-color: white;
+font-family: 'VT323', monospace;
 &:hover{
         color: #228B22;
 }
@@ -66,6 +67,7 @@ height: 75px;
 /* line-height: 80px; */
 text-align: center;
 background-color: white;
+font-family: 'VT323', monospace;
 &:hover{
         color: #228B22;
 }
@@ -88,9 +90,6 @@ export function Play({ gameState, setGameState }: PlayProps ) {
     const [content, setContent] = useState(gameState.paperContent);
     const [button1, setButton1] = useState(gameState.buttonsPaper);
     const [button2, setButton2] = useState(undefined);
-    // let title = gameState.paperTitle;
-    // let content = gameState.paperContent;
-    // let button = gameState.buttonsPaper;
 
     var gameName = [
         "<pre><code>@@@@@@@    @@@@@@   @@@  @@@  @@@@@@@   @@@@@@@@  @@@@@@@@@@   @@@   @@@@@@@",
@@ -124,22 +123,23 @@ export function Play({ gameState, setGameState }: PlayProps ) {
 
 function renderButtons(button1: any, setButton1: any, gameState: GameState, count: any, setCount: any, setTitle: any, setContent: any, button2: any, setButton2: any){
     if(!button2){
-        return <span><GameButton1 onClick={() => changeInterface(gameState, count, setCount, setTitle, setContent, setButton1, setButton2)}>
+        return <span><GameButton1 onClick={() => {changeInterface(1, gameState, count, setCount, setTitle, setContent, setButton1, setButton2)}}>
         {button1}
         </GameButton1></span>
     }
     if(button2){
-    return <span><ButtonWrapper><GameButton2 onClick={() => changeInterface(gameState, count, setCount, setTitle, setContent, setButton1, setButton2)}>
+    return <span><ButtonWrapper><GameButton2 onClick={() => changeInterface(1, gameState, count, setCount, setTitle, setContent, setButton1, setButton2)}>
     {button1}
     </GameButton2>
-    <GameButton2 onClick={() => changeInterface(gameState, count, setCount, setTitle, setContent, setButton1, setButton2)}>
+    <GameButton2 onClick={() => changeInterface(2, gameState, count, setCount, setTitle, setContent, setButton1, setButton2)}>
         {button2}
         </GameButton2></ButtonWrapper></span>
     }
 }
 
-function changeInterface(gameState: GameState, counter: any, setCount: any, setTitle: any, setContent: any, setButton1: any, setButton2: any){
+function changeInterface(choice: any, gameState: GameState, counter: any, setCount: any, setTitle: any, setContent: any, setButton1: any, setButton2: any){
    setCount(counter+=1);
+
    if (counter == 1){
         setTitle("");
         setContent(gameState.goToWork);
@@ -148,12 +148,20 @@ function changeInterface(gameState: GameState, counter: any, setCount: any, setT
     }
     else if (counter == 2){
         setTitle("");
+        if(choice == "1"){
+            setContent(gameState.ifOv);
+        }
+        else if(choice == "2"){
+            setContent(gameState.ifBike);
+        }
+        setButton1("OK");
+        setButton2("");
+    }
+    else if(counter == 3){
+        setTitle("");
         setContent(gameState.afterWork);
         setButton1(gameState.buttonAw1);
         setButton2(gameState.buttonAw2);
-    }
-    else{
-        
     }
 
 }

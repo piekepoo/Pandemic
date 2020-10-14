@@ -2,8 +2,8 @@ package nl.sogyo.pandemic.domain;
 
 import java.util.List;
 
-import nl.sogyo.pandemic.domain.MainChar;
-import nl.sogyo.pandemic.domain.TextArray;
+import main.java.nl.sogyo.pandemic.domain.MainChar;
+import main.java.nl.sogyo.pandemic.domain.TextArray;
 
 public class Game {
 	MainChar maincharacter;
@@ -46,7 +46,7 @@ public class Game {
 	}
 
 	
-	public void evaluateAnswer(String event, int answernumber) {
+	public void evaluateAnswer(String money, int moneyIncD, String social, int socialIncD, String virus, int VirIncDå) {
 		if (cycle == 1) {
 			if (event.equals("GoToWork")) {
 				if (answernumber == 1) { // Met OV

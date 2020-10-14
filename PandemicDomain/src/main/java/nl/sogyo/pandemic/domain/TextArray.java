@@ -1,4 +1,4 @@
-package nl.sogyo.pandemic.domain;
+package main.java.nl.sogyo.pandemic.domain;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ package nl.sogyo.pandemic.api;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -26,15 +26,14 @@ import nl.sogyo.pandemic.domain.TextArray;
  *
  */
 
-@Path("/getPaper")
+@Path("/nextDay")
 public class PandemicGame {
 
 	/**
 	 * @param request
 	 * @return
 	 */
-	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
+	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response initialize(
 			@Context HttpServletRequest request) {
