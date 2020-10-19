@@ -2,8 +2,8 @@ package nl.sogyo.pandemic.domain;
 
 import java.util.List;
 
-import main.java.nl.sogyo.pandemic.domain.MainChar;
-import main.java.nl.sogyo.pandemic.domain.TextArray;
+import nl.sogyo.pandemic.domain.MainChar;
+import nl.sogyo.pandemic.domain.TextArray;
 
 public class Game {
 	MainChar maincharacter;
@@ -46,33 +46,140 @@ public class Game {
 	}
 
 	
-	public void evaluateAnswer(String money, int moneyIncD, String social, int socialIncD, String virus, int VirIncDå) {
+	public void evaluateAnswer(String event, int answer) {
 		if (cycle == 1) {
 			if (event.equals("GoToWork")) {
-				if (answernumber == 1) { // Met OV
-					System.out.println("socialNeed decreasing");
+				if (answer == 1) { // Met OV
+					this.maincharacter.socialIncrease(2);
+					this.maincharacter.virusIncrease(5);
+					this.maincharacter.earnMoney(100);
+
 				}
-				else if (answernumber == 2) { // Met fiets
-					System.out.println("socialNeed increasing");
+				else if (answer == 2) { // Met fiets
+					this.maincharacter.socialDecrease(2);
+					this.maincharacter.virusIncrease(3);
+					this.maincharacter.earnMoney(100);
+
 				}
 			}
 			else if (event.equals("AfterWork")) {
-				if (answernumber == 1) {
-					System.out.println("socialNeed decreasing");
+				if (answer == 1) {
+					this.maincharacter.socialDecrease(5);
+					this.maincharacter.virusDecrease(1);
 				}
-				else if (answernumber == 2) {
-					System.out.println("socialNeed decreasing");
+				else if (answer == 2) {
+					this.maincharacter.socialDecrease(5);
+					this.maincharacter.virusDecrease(1);;
 				}
 			}
-		//cycle 2
-		
 		}
-		
-		
+		else if (cycle == 2) {
+			if (event.equals("GoToWork")) {
+				if (answer == 1) { // Met OV
+					this.maincharacter.socialIncrease(2);
+					this.maincharacter.virusIncrease(5);
+					this.maincharacter.earnMoney(100);
+
+				}
+				else if (answer == 2) { // Met fiets
+					this.maincharacter.socialDecrease(2);
+					this.maincharacter.virusIncrease(3);
+					this.maincharacter.earnMoney(100);
+				}
+			}
+			else if (event.equals("AfterWork")) {
+				if (answer == 1) {
+					this.maincharacter.socialIncrease(5);
+					this.maincharacter.virusIncrease(5);
+					this.maincharacter.spendMoney(50);
+
+				}
+				else if (answer == 2) {
+					this.maincharacter.socialDecrease(3);
+					this.maincharacter.virusDecrease(2);
+				}
+			}					
+		}
+		else if (cycle == 3) {
+			if (event.equals("GoToWork")) {
+				if (answer == 1) { // Met OV
+					this.maincharacter.socialIncrease(2);
+					this.maincharacter.virusIncrease(5);
+					this.maincharacter.earnMoney(50);
+				}
+				else if (answer == 2) { // Met fiets
+					this.maincharacter.socialDecrease(2);
+					this.maincharacter.virusIncrease(3);
+					this.maincharacter.earnMoney(100);
+				}
+			}
+			else if (event.equals("AfterWork")) {
+				if (answer == 1) {
+					this.maincharacter.socialDecrease(3);
+					this.maincharacter.virusIncrease(3);
+					this.maincharacter.spendMoney(80);
+					this.maincharacter.buyToiletPaper(8);
+				}
+				else if (answer == 2) {
+					this.maincharacter.socialIncrease(1);
+					this.maincharacter.virusIncrease(3);
+					this.maincharacter.spendMoney(10);
+					this.maincharacter.buyToiletPaper(1);
+
+				}
+			}					
+		}
+		else if (cycle == 4) {
+			if (event.equals("GoToWork")) {
+				if (answer == 1) { // Met OV
+					this.maincharacter.socialIncrease(1);
+					this.maincharacter.virusIncrease(2);
+					this.maincharacter.earnMoney(100);
+					this.maincharacter.useToiletPaper(1);
+				}
+				else if (answer == 2) { // Met fiets
+					this.maincharacter.socialIncrease(2);
+					this.maincharacter.virusIncrease(5);
+					this.maincharacter.earnMoney(100);
+				}
+			}
+			else if (event.equals("AfterWork")) {
+				if (answer == 1) {
+					this.maincharacter.socialIncrease(5);
+					this.maincharacter.virusIncrease(5);
+					this.maincharacter.spendMoney(100);
+				}
+				else if (answer == 2) {
+					this.maincharacter.socialDecrease(3);
+					this.maincharacter.virusIncrease(2);
+				}
+			}					
+		}
+		else if (cycle == 5) {
+			if (event.equals("GoToWork")) {
+				if (answer == 1) { // Met OV
+					this.maincharacter.socialIncrease(1);
+					this.maincharacter.virusIncrease(3);
+					this.maincharacter.earnMoney(100);
+				}
+				else if (answer == 2) { // Met fiets
+					this.maincharacter.socialDecrease(5);
+					this.maincharacter.virusDecrease(2);
+					this.maincharacter.earnMoney(100);
+				}
+			}
+			else if (event.equals("AfterWork")) {
+				if (answer == 1) {
+					this.maincharacter.socialDecrease(3);
+					this.maincharacter.virusDecrease(1);
+				}
+				else if (answer == 2) {
+					this.maincharacter.socialDecrease(3);
+					this.maincharacter.virusDecrease(1);
+				}
+			}					
+		}
 	}
 }
-//	public Game(Cycle cyc) {
-//		this.cycle = new Cycle();
-//	}
 
 

@@ -14,4 +14,8 @@ export interface GameState {
     afterWork: string;
     buttonAw1: string;
     buttonAw2: string;
+    social: any;
+    virusc: any;
+    money: any;
+    toilet: any;
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -26,8 +27,8 @@ import nl.sogyo.pandemic.domain.TextArray;
  *
  */
 
-@Path("/nextDay")
-public class PandemicGame {
+@Path("/saveAnswer")
+public class PandemicAnswers {
 
 	/**
 	 * @param request
@@ -35,38 +36,26 @@ public class PandemicGame {
 	 */
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response initialize(
+	@Path("/{event}/{choice}")
+	public Response saveAnswer(
+			@PathParam("event") String event, 
+			@PathParam("choice") String choice, 
 			@Context HttpServletRequest request) {
 		
 		HttpSession session= request.getSession(true);
 		Game pandemic = (Game) session.getAttribute("pandemic");
-		TextArray textArray = pandemic.startCycle();
+		pandemic.evaluateAnswer(event, Integer.parseInt(choice));
 		System.out.println("Fetch call received");
-	
-	 	JSONObject json;
+
+		JSONObject json;
 
  		json = new JSONObject();
 
-  		json.put("name", pandemic.getMainChar().getName());
-  		json.put("age", pandemic.getMainChar().getAgegroup());
-  		json.put("id", textArray.getId());
-  		json.put("day", textArray.getDay());
-  		json.put("paperTitle", textArray.getPaperTitle());
-  		json.put("paperContent", textArray.getPaperContent());
-  		json.put("buttonsPaper", textArray.getButtonsPaper());
-  		json.put("goToWork", textArray.getGoToWork());
-  		json.put("buttonsWork1", textArray.getButtonsWork1());
-  		json.put("buttonsWork2", textArray.getButtonsWork2());
-  		json.put("ifOv", textArray.getIfOv());
-  		json.put("ifBike", textArray.getIfBike());
-  		json.put("afterWork", textArray.getAfterWork());
-  		json.put("buttonAw1", textArray.getButtonAw1());
-  		json.put("buttonAw2", textArray.getButtonAw2());
 		json.put("money", pandemic.getMainChar().getMoney());
   		json.put("social", pandemic.getMainChar().getSocialNeed());
   		json.put("virusc", pandemic.getMainChar().getVirusChance());
   		json.put("toilet", pandemic.getMainChar().getAmountToiletPaper());
-		
+
 		String output = json.toString();
 		
 		return Response.status(200).entity(output).build();

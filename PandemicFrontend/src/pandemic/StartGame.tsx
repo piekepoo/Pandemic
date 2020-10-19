@@ -33,11 +33,12 @@ width: 50%;
 margin: auto;
 `
 
+
 const GameScreen = styled.span`
 display: inline-block;
 border: 3px solid;
 width: 99%;
-height: 380px;
+height: 400px;
 text-align: center;
 `
 const Input = styled.input`
@@ -113,7 +114,7 @@ export function StartGame({ message, onPlayersConfirmed }: StartGameProps) {
           // dangerouslySetInnerHTML expects an object like this:
      var wrappedASCII = {__html: gameName };
 
-    return <div><Interface><GameHeader><span dangerouslySetInnerHTML={wrappedASCII}></span></GameHeader>
+    return <Interface><GameHeader><span dangerouslySetInnerHTML={wrappedASCII}></span></GameHeader>
         <GameScreen> <ScreenText><PaperTitle><p> Welkom bij Pandemic! </p> </PaperTitle> 
         <p> Ga jij de pandemie overleven? <br></br><br></br>Om te beginnen zouden we graag je naam en leeftijd willen weten.</p>
         <p><Input value={playerName}
@@ -128,7 +129,6 @@ export function StartGame({ message, onPlayersConfirmed }: StartGameProps) {
          </ScreenText>  </GameScreen><GameButton onClick={() => onPlayersConfirmed(playerName, playerAge)}>
             Verzenden
         </GameButton>
-        </Interface></div>
+        </Interface>
 
 }
-
