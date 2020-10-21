@@ -21,7 +21,7 @@ class SQLDatabaseConnection{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection(  
 
-					"jdbc:mysql://localhost:3306/PandemicDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","Blokkendoos1!");  
+			"jdbc:mysql://localhost:3306/PandemicDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","Blokkendoos1!");  
 
 			Statement stmt=con.createStatement();  
 

@@ -10,8 +10,6 @@ const Interface = styled.div`
   margin: auto;
   width: 50%;
   font-family: 'VT323', monospace;
-  
-  
 `
 
 const GameHeader = styled.div`
@@ -19,7 +17,6 @@ font-size: 100%;
 text-align: left;
 padding: 2px;
 color: #228B22;
-
 `
 
 const PaperTitle = styled.span`
@@ -31,7 +28,6 @@ font-weight: bold;
 `
 
 const ScreenText = styled.div`
-/* text-align: justify; */
 width: 50%;
 margin: auto;
 `
@@ -52,7 +48,6 @@ display: inline-block;
 border: 3px solid;
 width: calc(100%);
 height: 75px;
-/* line-height: 80px; */
 text-align: center;
 background-color: white;
 font-family: 'VT323', monospace;
@@ -60,7 +55,6 @@ font-family: 'VT323', monospace;
         color: #228B22;
 }
 `
-
 const GameButton2 = styled.button`
 vertical-align: top;
 font-size: 80%;
@@ -68,7 +62,6 @@ display: inline;
 border: 3px solid;
 width: calc(50%);
 height: 75px;
-/* line-height: 80px; */
 text-align: center;
 background-color: white;
 font-family: 'VT323', monospace;
@@ -89,10 +82,8 @@ width: calc(33%);
 text-align: center;
 display: inline-block;
 font-size: 70%;
-
 `
 ;
-
 
 interface PlayProps {
     gameState: GameState;
@@ -123,13 +114,11 @@ export function Play({ gameState, setGameState}: PlayProps ) {
         " :         :   : :  ::    :   :: :  :   : :: ::    :      :    :     :: :: :",
         "</code></pre>",
       ].join('\n');
-
-          // dangerouslySetInnerHTML expects an object like this:
+      
      var wrappedASCII = {__html: gameName };
 
 
         return <div><Interface><GameHeader><span dangerouslySetInnerHTML={wrappedASCII}></span></GameHeader>
-
         <GameScreen>
         <BarWrap><progress max="100" value={social}></progress></BarWrap> 
         <BarWrap> <progress max="100" value={virusc}><span></span></progress></BarWrap> 
@@ -137,17 +126,11 @@ export function Play({ gameState, setGameState}: PlayProps ) {
         <BarLabels> Sociale Batterij: {social}%</BarLabels> 
         <BarLabels> Infectiekans: {virusc}%</BarLabels> 
         <BarLabels> {printToiletPaper(toiletPaper)}</BarLabels> 
-
-        
-        <ScreenText>
-            <PaperTitle><p> {gameState.day} </p> </PaperTitle> 
-            <PaperTitle><p> {title} </p> </PaperTitle> 
-            <p> {content}</p>
-         </ScreenText>  </GameScreen>
+        <ScreenText> <PaperTitle><p> {gameState.day} </p> </PaperTitle> 
+                    <PaperTitle><p> {title} </p> </PaperTitle> 
+                    <p> {content}</p> </ScreenText>  </GameScreen>
         {renderButtons(button1, setButton1, gameState, setGameState, count, setCount, setTitle, setContent, button2, setButton2, setSocial, setMoney, setVirusc, setToiletPaper)}
         </Interface></div>
-    // }
-
 }
 
 function printToiletPaper(toilet: any){
@@ -156,15 +139,6 @@ function printToiletPaper(toilet: any){
     }
 }
 
-// function changeText(cycle: any, setIntroText: any){
-//     if(cycle == 1){
-//         setIntroText("Twee dingen die je moet weten. Houd je sociale batterij hoog genoeg om niet eenzaam te worden. Houd je kans om geinfecteerd te worden met het virus laag om niet besmet te worden. Succes!");
-//     }
-    // else {
-    //     console.log(intro);
-    //     setIntro("");
-    //     console.log(intro);
-    // }
 
 
 function renderButtons(button1: any, setButton1: any, gameState: GameState, setGameState: any, count: any, setCount: any, setTitle: any, setContent: any, button2: any, setButton2: any, setSocial: any, setMoney: any, setVirusc: any, setToiletPaper: any){
@@ -186,6 +160,7 @@ function renderButtons(button1: any, setButton1: any, gameState: GameState, setG
 function changeInterface(choice: any, gameState: GameState, setGameState: any, counter: any, setCount: any, setTitle: any, setContent: any, setButton1: any, setButton2: any, setSocial: any, setMoney: any, setVirusc: any, setToiletPaper: any){
    setCount(counter+=1);
    if(gameState.buttonsPaper === "EINDE"){
+
        setTitle("JOUW SCORE: " + gameState.score);
        setContent("scoressss");
    }
@@ -205,50 +180,48 @@ function changeInterface(choice: any, gameState: GameState, setGameState: any, c
    }
    else if (gameState.cycle > 1 && gameState.cycle < 7 ){
         if (counter == 1){
-        setTitle("");
-        setContent(gameState.goToWork);
-        setButton1(gameState.buttonsWork1);
-        setButton2(gameState.buttonsWork2);
+            setTitle("");
+            setContent(gameState.goToWork);
+            setButton1(gameState.buttonsWork1);
+            setButton2(gameState.buttonsWork2);
     }
         else if (counter == 2 ){
-        setTitle("");
+            setTitle("");
             if(choice == "1"){
-            saveAnswer("GoToWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
-            setContent(gameState.ifOv);
+                saveAnswer("GoToWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
+                setContent(gameState.ifOv);
             }
             else if(choice == "2"){
-            saveAnswer("GoToWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
-            setContent(gameState.ifBike);
+                saveAnswer("GoToWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
+                setContent(gameState.ifBike);
             }
-        setButton1(gameState.ifButton);
-        setButton2("");
+            setButton1(gameState.ifButton);
+            setButton2("");
         }
         else if(counter == 3){
-        setTitle("");
-        setContent(gameState.afterWork);
-        setButton1(gameState.buttonAw1);
-        setButton2(gameState.buttonAw2);
+            setTitle("");
+            setContent(gameState.afterWork);
+            setButton1(gameState.buttonAw1);
+            setButton2(gameState.buttonAw2);
         }
         else if(counter == 4){
-        if(choice == "1"){
-            saveAnswer("AfterWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
-        }
-        else if(choice == "2"){
-            saveAnswer("AfterWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
-        }
-        nextDay(gameState, setGameState, setContent, setTitle);
-        setButton1(gameState.buttonsPaper);
-        setButton2("");
-        setCount(0);
-        }
+            if(choice == "1"){
+                saveAnswer("AfterWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
+            }
+            else if(choice == "2"){
+                saveAnswer("AfterWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
+            }
+            nextDay(gameState, setGameState, setContent, setTitle);
+            setButton1(gameState.buttonsPaper);
+            setButton2("");
+            setCount(0);
         }
     }
+}
 
-    
     function saveAnswer(event: string, choice: any, setSocial: any, setMoney: any, setVirusc: any, setToiletPaper: any){
-       // console.log('pandemic/api/saveAnswer/' + event + "/" + choice);
         const putMethod = {
-            method: 'PUT', // Method itself
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -268,7 +241,7 @@ function changeInterface(choice: any, gameState: GameState, setGameState: any, c
 
     function nextDay(gameState: GameState, setGameState: any, setContent: any, setTitle: any){
          const putMethod = {
-             method: 'PUT', // Method itself
+             method: 'PUT', 
              headers: {
                  'Accept': 'application/json',
                  'Content-Type': 'application/json'

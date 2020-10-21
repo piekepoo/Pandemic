@@ -29,7 +29,6 @@ font-weight: bold;
 `
 
 const ScreenText = styled.div`
-/* text-align: justify; */
 width: 50%;
 margin: auto;
 `
@@ -83,21 +82,6 @@ export function StartGame({ message, onPlayersConfirmed }: StartGameProps) {
 
     const [ playerName, setPlayerName ] = useState("");
     const [ playerAge, setPlayerAge ] = useState("");
-
-
-//               try {
-//   fetch(`pandemic/api/getPaper`, {
-//     headers : { 
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json'
-//      }
-
-//   })
-//   .then((response) => response.text());
-//     } catch (error) {
-//     console.log(error);
-//     }
-
 
     var gameName = [
         "<pre><code>@@@@@@@    @@@@@@   @@@  @@@  @@@@@@@   @@@@@@@@  @@@@@@@@@@   @@@   @@@@@@@",

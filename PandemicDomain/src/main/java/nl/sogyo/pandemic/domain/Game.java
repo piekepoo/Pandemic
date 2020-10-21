@@ -23,17 +23,13 @@ public class Game {
 	}
 
 	public void startGame() {
-		System.out.println(this.startCycle());
-	}
-
-	public int calculateScore() {
-		int total = (int) (maincharacter.getMoney() + maincharacter.getSocialNeed() + maincharacter.getAmountToiletPaper());
-		return total;
+		this.startCycle();
 	}
 	
 	public void setPlayerInfo(String name, int age) {
 		this.maincharacter = new MainChar(name, age);
 	}
+	
 
 	public MainChar getMainChar() {
 		return this.maincharacter;
@@ -47,17 +43,28 @@ public class Game {
 		return cycle;	 
 	}
 
+	public void enterScore() {
+		// In progress
+		//INSERT INTO Ranklist (name, score)
+		//VALUES ("Test", 100);
+		
+	}
+	
+	public int calculateScore() {
+		int total = (int) (maincharacter.getMoney() + maincharacter.getSocialNeed() + maincharacter.getAmountToiletPaper());
+		return total;
+	}
+	
 	public TextArray startCycle() {
-		System.out.println(this.maincharacter.getVirusChance());
-		if (this.maincharacter.AmInfected()) {
+		this.maincharacter.getVirusChance();
+		if (this.maincharacter.AmInfected()) { // if player is infected, get data for end of game.
 			List<String> dataBaseList = DatabaseConnection.getData("select * from eventFlow where id = 100;");
 			dataBaseList.set(1, ("Day " + (this.cycle + 1)));
 			this.textArray = new TextArray(dataBaseList);
 		}
 		else {
-			cycle += 1;
+			cycle += 1; // Otherwise, start new day/cycle
 			List<String> dataBaseList = DatabaseConnection.getData("select * from eventFlow where id = " + cycle + ";");
-			System.out.println(dataBaseList.get(1));
 			this.textArray = new TextArray(dataBaseList);
 		}
 		return textArray;
@@ -65,7 +72,7 @@ public class Game {
 
 
 	public void evaluateAnswer(String event, int answer) {
-		if (!maincharacter.getSickness()) {
+		if (!maincharacter.getSickness()) { // Continue if player not infected
 			if (cycle == 1) {
 
 			}

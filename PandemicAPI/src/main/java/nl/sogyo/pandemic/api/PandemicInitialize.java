@@ -70,7 +70,7 @@ public class PandemicInitialize {
   		json.put("afterWork", textArray.getAfterWork());
   		json.put("buttonAw1", textArray.getButtonAw1());
   		json.put("buttonAw2", textArray.getButtonAw2());
-  				
+  	
  		json.put("money", pandemic.getMainChar().getMoney());
   		json.put("social", pandemic.getMainChar().getSocialNeed());
   		json.put("virusc", pandemic.getMainChar().getVirusChance());
