@@ -13,6 +13,7 @@ public class TextArray {
 	String buttonsWork2;
 	String ifOv;
 	String ifBike;
+	String ifButton;;
 	String afterWork;
 	String buttonAw1;
 	String buttonAw2;
@@ -29,9 +30,10 @@ public class TextArray {
 		this.buttonsWork2 = dataBaseList.get(7);
 		this.ifOv = dataBaseList.get(8);
 		this.ifBike = dataBaseList.get(9);
-		this.afterWork = dataBaseList.get(10);
-		this.buttonAw1 = dataBaseList.get(11);
-		this.buttonAw2 = dataBaseList.get(12);
+		this.ifButton = dataBaseList.get(10);
+		this.afterWork = dataBaseList.get(11);
+		this.buttonAw1 = dataBaseList.get(12);
+		this.buttonAw2 = dataBaseList.get(13);
 	}
 	
 	public String getId() {
@@ -63,6 +65,9 @@ public class TextArray {
 	}
 	public String getIfBike() {
 		return this.ifBike;
+	}
+	public String getIfButton() {
+		return this.ifButton;
 	}
 	public String getAfterWork() {
 		return this.afterWork;

@@ -121,5 +121,16 @@ public class MainChar {
 		}
 	}
 
-
+	public boolean AmInfected() {
+		int random = (int)(Math.random() * 100 + 1);
+		double infection = (100 - this.chanceOfVirus);
+		if(random > infection) {
+			this.isInfected = true;
+		}
+		return isInfected;
+	}
+	
+	public boolean getSickness() {
+		return isInfected;
+	}
 }

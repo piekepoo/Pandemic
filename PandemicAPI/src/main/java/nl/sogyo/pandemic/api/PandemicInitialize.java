@@ -66,6 +66,7 @@ public class PandemicInitialize {
   		json.put("buttonsWork2", textArray.getButtonsWork2());
   		json.put("ifOv", textArray.getIfOv());
   		json.put("ifBike", textArray.getIfBike());
+  		json.put("ifButton", textArray.getIfButton());
   		json.put("afterWork", textArray.getAfterWork());
   		json.put("buttonAw1", textArray.getButtonAw1());
   		json.put("buttonAw2", textArray.getButtonAw2());
@@ -73,6 +74,7 @@ public class PandemicInitialize {
  		json.put("money", pandemic.getMainChar().getMoney());
   		json.put("social", pandemic.getMainChar().getSocialNeed());
   		json.put("virusc", pandemic.getMainChar().getVirusChance());
+  		json.put("cycle", pandemic.getCycle());
 		
 		String output = json.toString();
 		

@@ -28,7 +28,7 @@ class SQLDatabaseConnection{
 			ResultSet rs=stmt.executeQuery(QueryString);  
 
 			while(rs.next())  
-				for (int i = 0; i < 13; i++) {
+				for (int i = 0; i < 14; i++) {
 					dataBaseList.add(rs.getString(i+1));
 				}
 

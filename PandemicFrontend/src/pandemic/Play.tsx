@@ -18,6 +18,7 @@ const GameHeader = styled.div`
 font-size: 100%;
 text-align: left;
 padding: 2px;
+color: #228B22;
 
 `
 
@@ -41,6 +42,8 @@ border: 3px solid;
 width: 99%;
 min-height: 400px;
 text-align: center;
+background-color: white;
+
 `
 const GameButton1 = styled.button`
 vertical-align: top;
@@ -96,7 +99,7 @@ interface PlayProps {
     setGameState: any;
 }
 
-export function Play({ gameState, setGameState }: PlayProps ) {
+export function Play({ gameState, setGameState}: PlayProps ) {
     let [count, setCount] = useState(0);
     const [title, setTitle] = useState(gameState.paperTitle);
     const [content, setContent] = useState(gameState.paperContent);
@@ -124,7 +127,8 @@ export function Play({ gameState, setGameState }: PlayProps ) {
           // dangerouslySetInnerHTML expects an object like this:
      var wrappedASCII = {__html: gameName };
 
-    return <div><Interface><GameHeader><span dangerouslySetInnerHTML={wrappedASCII}></span></GameHeader>
+
+        return <div><Interface><GameHeader><span dangerouslySetInnerHTML={wrappedASCII}></span></GameHeader>
 
         <GameScreen>
         <BarWrap><progress max="100" value={social}></progress></BarWrap> 
@@ -141,18 +145,27 @@ export function Play({ gameState, setGameState }: PlayProps ) {
             <p> {content}</p>
          </ScreenText>  </GameScreen>
         {renderButtons(button1, setButton1, gameState, setGameState, count, setCount, setTitle, setContent, button2, setButton2, setSocial, setMoney, setVirusc, setToiletPaper)}
-
-
         </Interface></div>
+    // }
 
 }
 
 function printToiletPaper(toilet: any){
-    console.log(toilet); 
     if(toilet){ 
         return <span> WC-papier: {toilet} </span>
     }
 }
+
+// function changeText(cycle: any, setIntroText: any){
+//     if(cycle == 1){
+//         setIntroText("Twee dingen die je moet weten. Houd je sociale batterij hoog genoeg om niet eenzaam te worden. Houd je kans om geinfecteerd te worden met het virus laag om niet besmet te worden. Succes!");
+//     }
+    // else {
+    //     console.log(intro);
+    //     setIntro("");
+    //     console.log(intro);
+    // }
+
 
 function renderButtons(button1: any, setButton1: any, gameState: GameState, setGameState: any, count: any, setCount: any, setTitle: any, setContent: any, button2: any, setButton2: any, setSocial: any, setMoney: any, setVirusc: any, setToiletPaper: any){
     if(!button2){
@@ -172,33 +185,51 @@ function renderButtons(button1: any, setButton1: any, gameState: GameState, setG
 
 function changeInterface(choice: any, gameState: GameState, setGameState: any, counter: any, setCount: any, setTitle: any, setContent: any, setButton1: any, setButton2: any, setSocial: any, setMoney: any, setVirusc: any, setToiletPaper: any){
    setCount(counter+=1);
-   console.log(counter);
-   if (counter == 1){
+   if(gameState.buttonsPaper === "EINDE"){
+       setTitle("JOUW SCORE: " + gameState.score);
+       setContent("scoressss");
+   }
+   else{
+   if (gameState.cycle == 1){
+        if (counter == 1){
+            console.log(gameState.cycle);
+            setTitle("");
+            setContent(gameState.goToWork);
+            setButton1(gameState.buttonsWork1);
+            setButton2(gameState.buttonsWork2);
+        }
+        else if(counter == 2){
+            setCount(0);
+            nextDay(gameState, setGameState, setContent, setTitle);
+        }
+   }
+   else if (gameState.cycle > 1 && gameState.cycle < 7 ){
+        if (counter == 1){
         setTitle("");
         setContent(gameState.goToWork);
         setButton1(gameState.buttonsWork1);
         setButton2(gameState.buttonsWork2);
     }
-    else if (counter == 2){
+        else if (counter == 2 ){
         setTitle("");
-        if(choice == "1"){
+            if(choice == "1"){
             saveAnswer("GoToWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
             setContent(gameState.ifOv);
-        }
-        else if(choice == "2"){
+            }
+            else if(choice == "2"){
             saveAnswer("GoToWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
             setContent(gameState.ifBike);
-        }
-        setButton1("OK");
+            }
+        setButton1(gameState.ifButton);
         setButton2("");
-    }
-    else if(counter == 3){
+        }
+        else if(counter == 3){
         setTitle("");
         setContent(gameState.afterWork);
         setButton1(gameState.buttonAw1);
         setButton2(gameState.buttonAw2);
-    }
-    else if(counter == 4){
+        }
+        else if(counter == 4){
         if(choice == "1"){
             saveAnswer("AfterWork", choice, setSocial, setMoney, setVirusc, setToiletPaper);
         }
@@ -209,11 +240,13 @@ function changeInterface(choice: any, gameState: GameState, setGameState: any, c
         setButton1(gameState.buttonsPaper);
         setButton2("");
         setCount(0);
-
+        }
+        }
     }
+
     
     function saveAnswer(event: string, choice: any, setSocial: any, setMoney: any, setVirusc: any, setToiletPaper: any){
-        console.log('pandemic/api/saveAnswer/' + event + "/" + choice);
+       // console.log('pandemic/api/saveAnswer/' + event + "/" + choice);
         const putMethod = {
             method: 'PUT', // Method itself
             headers: {
@@ -225,7 +258,6 @@ function changeInterface(choice: any, gameState: GameState, setGameState: any, c
            fetch('pandemic/api/saveAnswer/' + event + "/" + choice, putMethod)
            .then(response => response.json())
            .then(data => {
-            console.log(data);
             setSocial(data.social);
             setMoney(data.money);
             setVirusc(data.virusc);
@@ -250,7 +282,6 @@ function changeInterface(choice: any, gameState: GameState, setGameState: any, c
             setGameState(gameState);
             setTitle(gameState.paperTitle);
             setContent(gameState.paperContent);
-            //setContent(gameState.paperContent);
          }) 
             .catch(err => console.log(err))
          }

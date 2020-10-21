@@ -12,13 +12,22 @@ public static void main(String[] args) {
 //	newgame.evaluateAnswer("GoToWork", 2);
 //	System.out.println(newgame.maincharacter.getSocialNeed());
 	
-	Game newgame = new Game();
-	newgame.setPlayerInfo("name", 25);
-	newgame.startGame();
-	newgame.evaluateAnswer("AfterWork", 1);
-	double actual = newgame.getMainChar().getSocialNeed();
-	double expected = 40;
-	System.out.println(actual + " " + expected);
+//	Game newgame = new Game();
+//	newgame.setPlayerInfo("name", 25);
+//	newgame.getMainChar().AmInfected();
+//	newgame.startCycle();
+//	newgame.startCycle();
+//	newgame.startCycle();
+//	newgame.startCycle();
+//	newgame.startCycle();
+//	newgame.startCycle();
+
+	//System.out.println(newgame.getTextArray().getDay());
+	//newgame.startCycle();
+//	newgame.evaluateAnswer("AfterWork", 1);
+//	double actual = newgame.getMainChar().getSocialNeed();
+//	double expected = 40;
+//	System.out.println(actual + " " + expected);
 	
 
 	}

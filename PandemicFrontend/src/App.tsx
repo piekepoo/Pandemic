@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"></link>
 
+
+
 const Interface = styled.div`
   margin: auto;
   width: 50%;
@@ -32,6 +34,7 @@ border: 3px solid;
 width: 100%;
 height: 380px;
 text-align: center;
+background-color: white;
 
 `;
 
@@ -98,7 +101,7 @@ export function App() {
         />
     }
 
-    return <Play gameState={gameState} setGameState={setGameState} />
+    return <Play gameState={gameState} setGameState={setGameState} /> 
 
 }
 

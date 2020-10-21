@@ -1,5 +1,6 @@
 
 export interface GameState {
+    name: string;
     age: string;
     id: string;
 	day: string;
@@ -11,6 +12,7 @@ export interface GameState {
     buttonsWork2: string;
     ifOv: string;
     ifBike: string;
+    ifButton: string;
     afterWork: string;
     buttonAw1: string;
     buttonAw2: string;
@@ -18,4 +20,6 @@ export interface GameState {
     virusc: any;
     money: any;
     toilet: any;
+    cycle: any;
+    score: any;
 }

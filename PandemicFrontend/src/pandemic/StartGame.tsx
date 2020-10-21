@@ -20,6 +20,7 @@ const GameHeader = styled.div`
 font-size: 100%;
 text-align: left;
 padding: 2px;
+color: #228B22;
 
 `
 
@@ -40,6 +41,7 @@ border: 3px solid;
 width: 99%;
 height: 400px;
 text-align: center;
+background-color: white;
 `
 const Input = styled.input`
 ::placeholder,
