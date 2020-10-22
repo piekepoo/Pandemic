@@ -14,6 +14,7 @@ public class Game {
 	List<String> dataBaseList;
 	TextArray textArray;
 	int totalScore; 
+	Ranklist ranklist;
 
 	public Game() {
 		gameState = 0;
@@ -42,11 +43,16 @@ public class Game {
 	public int getCycle() {
 		return cycle;	 
 	}
+	
+	public Ranklist getRanks() {
+		return ranklist;	 
+	}
 
-	public void enterScore() {
-		// In progress
-		//INSERT INTO Ranklist (name, score)
-		//VALUES ("Test", 100);
+	public Ranklist enterScore(String name, int score) {
+		DatabaseConnection.setData("INSERT INTO Ranklist (name, score) VALUES ('" + name +  "', '" + score + "');", 2);
+		List<String> dataBaseList = DatabaseConnection.getData("select name, score from Ranklist ORDER BY score DESC LIMIT 10;", 2);
+		this.ranklist = new Ranklist(dataBaseList);
+		return ranklist;
 		
 	}
 	
@@ -58,13 +64,13 @@ public class Game {
 	public TextArray startCycle() {
 		this.maincharacter.getVirusChance();
 		if (this.maincharacter.AmInfected()) { // if player is infected, get data for end of game.
-			List<String> dataBaseList = DatabaseConnection.getData("select * from eventFlow where id = 100;");
+			List<String> dataBaseList = DatabaseConnection.getData("select * from eventFlow where id = 100;", 14);
 			dataBaseList.set(1, ("Day " + (this.cycle + 1)));
 			this.textArray = new TextArray(dataBaseList);
 		}
 		else {
 			cycle += 1; // Otherwise, start new day/cycle
-			List<String> dataBaseList = DatabaseConnection.getData("select * from eventFlow where id = " + cycle + ";");
+			List<String> dataBaseList = DatabaseConnection.getData("select * from eventFlow where id = " + cycle + ";", 14);
 			this.textArray = new TextArray(dataBaseList);
 		}
 		return textArray;

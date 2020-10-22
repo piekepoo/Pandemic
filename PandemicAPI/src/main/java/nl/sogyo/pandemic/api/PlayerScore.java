@@ -7,10 +7,12 @@ package nl.sogyo.pandemic.api;
  * @author 
  *
  */
-public class PlayerData {
+
+
+public class PlayerScore {
 
 	String name;
-	int age;
+	int score;
 
 	public String getPlayerName() {
 		return name;
@@ -20,12 +22,11 @@ public class PlayerData {
 		this.name = namePlayer;
 	}
 
-	public int getAgePlayer() {
-		return age;
+	public int getScorePlayer() {
+		return score;
 	}
 
-	public void setAgePlayer(int scorePlayer) {
-		this.age = scorePlayer;
+	public void setScorePlayer(int scorePlayer) {
+		this.score = scorePlayer;
 	}
 }
-

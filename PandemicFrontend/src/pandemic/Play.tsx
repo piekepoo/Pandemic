@@ -114,7 +114,7 @@ export function Play({ gameState, setGameState}: PlayProps ) {
         " :         :   : :  ::    :   :: :  :   : :: ::    :      :    :     :: :: :",
         "</code></pre>",
       ].join('\n');
-      
+
      var wrappedASCII = {__html: gameName };
 
 
@@ -159,10 +159,12 @@ function renderButtons(button1: any, setButton1: any, gameState: GameState, setG
 
 function changeInterface(choice: any, gameState: GameState, setGameState: any, counter: any, setCount: any, setTitle: any, setContent: any, setButton1: any, setButton2: any, setSocial: any, setMoney: any, setVirusc: any, setToiletPaper: any){
    setCount(counter+=1);
+   console.log(counter);
    if(gameState.buttonsPaper === "EINDE"){
-
-       setTitle("JOUW SCORE: " + gameState.score);
-       setContent("scoressss");
+        if (counter == 1){
+            setTitle("JOUW SCORE: " + gameState.score);
+            showRanklist(gameState.name, gameState.score, setContent);
+        }
    }
    else{
    if (gameState.cycle == 1){
@@ -259,4 +261,16 @@ function changeInterface(choice: any, gameState: GameState, setGameState: any, c
             .catch(err => console.log(err))
          }
 
+         function showRanklist(name: string, score: any, setContent: any){
+            const postMethod = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ namePlayer: name, scorePlayer: score })
+            };
+            fetch('pandemic/api/setScore', postMethod)
+            .then(response => response.json())
+            .then(data => {console.log(data);
+            let display_txt = ["1. " + data.name1 + ": " + data.score1, <br/>, "2. " + data.name2 + ": " + data.score2, <br/>, "3. " + data.name3 + ": " + data.score3 , <br/>, "4. " + data.name4 + ": " + data.score4, <br/>, "5. " + data.name5 + ": " + data.score5, <br/>, "6. " + data.name6 + ": " + data.score6, <br/>, "7. " + data.name7 + ": " + data.score7, <br/>, "8. " + data.name8 + ": " + data.score8, <br/>, "9. " + data.name9 + ": " + data.score9, <br/>, "10. " + data.name10 + ": " + data.score10];
+            setContent(display_txt);});
+        }
 }
